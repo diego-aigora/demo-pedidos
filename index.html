@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toño mi Pollo · Demo de plataforma</title>
+<style>
+:root{--y:#FFC62B;--yl:#FFE9A8;--o:#F4801A;--r:#D8321F;--ink:#2A1A0F;--mut:#7A6654;--cream:#FFF7E6;--card:#fff;--line:#F0DFC0;--ok:#1E8E5A;--okl:#DDF3E7;--navy:#1F2A44}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;background:var(--cream);color:var(--ink);font-size:15px;line-height:1.4;padding-bottom:96px}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+.bar{position:sticky;top:0;z-index:20;background:var(--y);border-bottom:3px solid var(--o);padding:10px 16px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px}
+.brand .lg{width:40px;height:40px;border-radius:50%;background:#fff;border:2px solid var(--r);display:flex;align-items:center;justify-content:center;font-size:22px}
+.brand b{display:block;font-size:17px;color:var(--r);font-weight:800;line-height:1.1}
+.brand small{font-size:11px;color:var(--ink);letter-spacing:.06em;text-transform:uppercase;font-weight:700}
+.seg{display:flex;background:#fff;border-radius:999px;padding:3px;border:2px solid var(--ink)}
+.seg button{padding:8px 14px;border-radius:999px;font-weight:700;font-size:14px}
+.seg button.on{background:var(--ink);color:#fff}
+main{max-width:1080px;margin:0 auto;padding:16px}
+h1{font-size:24px;line-height:1.15;font-weight:800}
+h2{font-size:18px;font-weight:800;margin:22px 0 10px}
+h3{font-size:15px;font-weight:800}
+.sub{color:var(--mut);margin-top:4px}
+.eg{display:inline-block;background:var(--yl);border:1px dashed var(--o);color:#7a4a00;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;letter-spacing:.03em;vertical-align:middle;white-space:nowrap}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
+.grid{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+@media(min-width:980px){.grid.g3{grid-template-columns:1fr 1fr 1fr}}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.chip{padding:8px 14px;border-radius:999px;border:2px solid var(--ink);background:#fff;font-weight:700;font-size:14px}
+.chip.on{background:var(--r);border-color:var(--r);color:#fff}
+.prod{display:flex;flex-direction:column;gap:10px}
+.prod .top{display:flex;gap:12px;align-items:flex-start}
+.tile{width:54px;height:54px;border-radius:14px;background:var(--yl);display:flex;align-items:center;justify-content:center;font-size:28px;flex:none}
+.prod .nm{font-weight:800;font-size:16px;line-height:1.2}
+.prod .ds{color:var(--mut);font-size:13px}
+.prod .pr{margin-left:auto;text-align:right;white-space:nowrap}
+.prod .pr b{font-size:18px;color:var(--r)}
+.prod .pr small{display:block;color:var(--mut);font-size:12px}
+.qs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.qs>div{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--mut);font-weight:600}
+.qs .step{align-self:flex-start}
+.step{display:flex;align-items:center;border:2px solid var(--ink);border-radius:999px;overflow:hidden;background:#fff}
+.step button{width:40px;height:38px;font-size:20px;font-weight:800}
+.step button:active{background:var(--yl)}
+.step span{min-width:30px;text-align:center;font-weight:800;color:var(--ink)}
+.step.has{border-color:var(--ok);background:var(--okl)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--r);color:#fff;font-weight:800;padding:13px 18px;border-radius:14px;font-size:16px;width:100%}
+.btn.alt{background:var(--ink)}
+.btn.ghost{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+.btn.sm{width:auto;padding:8px 12px;font-size:13px;border-radius:10px}
+.btn.apple{background:#000}
+.pay{border:2px solid var(--ok);border-radius:14px;padding:14px;margin-top:14px;display:grid;gap:8px}
+.field{display:flex;flex-direction:column;gap:4px;margin-top:10px}
+.field label{font-size:12px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+.field input,.field select{border:2px solid var(--line);border-radius:12px;padding:11px 12px;background:#fff;width:100%}
+.field input:focus,.field select:focus{outline:none;border-color:var(--o)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ln{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.ln small{display:block;color:var(--mut)}
+.ln.tot{border:0;font-size:19px;font-weight:800;padding-top:10px}
+.ln.dis{color:var(--ok);font-weight:700}
+.prog{height:10px;background:var(--line);border-radius:999px;overflow:hidden;margin-top:8px}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--o),var(--r))}
+.note{background:var(--yl);border-radius:12px;padding:10px 12px;font-size:13px;margin-top:10px}
+.note.ok{background:var(--okl);color:#145c3b}
+.toggle{display:flex;gap:6px;margin-top:8px}
+.toggle button{flex:1;padding:10px 6px;border:2px solid var(--line);border-radius:12px;background:#fff;font-weight:700;font-size:13px}
+.toggle button.on{border-color:var(--ok);background:var(--okl);color:#145c3b}
+#cartbar{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 16px 14px;background:linear-gradient(180deg,rgba(255,247,230,0),var(--cream) 30%)}
+#cartbar .in{max-width:1080px;margin:0 auto}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:4px 0 10px;margin:12px -16px 0;padding-left:16px;padding-right:16px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;padding:9px 14px;border-radius:12px;background:#fff;border:2px solid var(--line);font-weight:700;font-size:14px}
+.tabs button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+@media(min-width:760px){.kpis{grid-template-columns:repeat(4,1fr)}}
+.kpi{background:var(--navy);color:#fff;border-radius:14px;padding:12px}
+.kpi small{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;opacity:.8}
+.kpi b{font-size:22px}
+.ord{border-left:6px solid var(--line)}
+.ord.new{border-left-color:var(--r);box-shadow:0 0 0 2px var(--r)}
+.ord .hd{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.badge{display:inline-block;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;background:var(--yl);color:#7a4a00;white-space:nowrap}
+.badge.b1{background:#E4ECFF;color:#1d3a8a}.badge.b2{background:var(--okl);color:#145c3b}.badge.b3{background:#FDE2DF;color:#8f1d12}.badge.b4{background:#EDE3FF;color:#4a2a8f}
+.st{font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px;background:var(--ink);color:#fff;white-space:nowrap}
+.st.s0{background:var(--r)}.st.s1{background:var(--o)}.st.s2{background:#b7791f}.st.s3{background:#2b6cb0}.st.s4{background:var(--ok)}.st.s5{background:#4a5568}
+.items{font-size:13px;color:var(--mut);margin:8px 0}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);padding:8px 6px;border-bottom:2px solid var(--line)}
+td{padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+td.n,th.n{text-align:right;white-space:nowrap}
+.scroll{overflow-x:auto}
+.mbar{height:8px;border-radius:999px;background:var(--line);min-width:60px;overflow:hidden}
+.mbar i{display:block;height:100%;background:var(--ok)}
+.res{background:var(--navy);color:#fff;border-radius:14px;padding:14px;margin-top:12px}
+.res b{font-size:28px;color:var(--y)}
+.res small{display:block;opacity:.85}
+.hbar{display:grid;grid-template-columns:110px 1fr 86px;gap:8px;align-items:center;font-size:13px;margin:8px 0}
+.hbar .t{height:16px;border-radius:8px;background:var(--line);overflow:hidden}
+.hbar .t i{display:block;height:100%;background:var(--o)}
+.hbar .t i.g{background:var(--ok)}
+svg{max-width:100%;height:auto;display:block}
+footer{text-align:center;color:var(--mut);font-size:12px;padding:18px 16px 8px}
+#toast{position:fixed;left:50%;bottom:110px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:12px;font-weight:700;font-size:14px;z-index:40;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90vw;text-align:center}
+#toast.on{opacity:1}
+.hero{background:linear-gradient(135deg,var(--y),var(--o));border-radius:20px;padding:18px;color:var(--ink)}
+.hero p{margin-top:6px;font-weight:600}
+.stop{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed var(--line)}
+.stop .nb{width:28px;height:28px;border-radius:50%;background:var(--r);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none;font-size:13px}
+.stop small{color:var(--mut);display:block}
+.stop .eta{margin-left:auto;font-weight:800;white-space:nowrap}
+.fz{display:inline-block;background:#E4ECFF;color:#1d3a8a;font-size:11px;font-weight:800;font-style:normal;padding:2px 8px;border-radius:999px;vertical-align:middle;white-space:nowrap;text-transform:none;letter-spacing:0}
+.fznote{background:#E4ECFF;color:#1d3a8a;border-radius:12px;padding:10px 12px;font-size:13px;margin:0 0 12px}
+.q{display:flex;gap:10px;align-items:flex-start;margin:26px 0 4px}
+.q i{flex:none;width:30px;height:30px;border-radius:50%;background:var(--r);color:#fff;font-style:normal;font-weight:800;display:flex;align-items:center;justify-content:center}
+.q h2{margin:2px 0 0}
+.cin{width:78px;border:2px solid var(--o);border-radius:10px;padding:6px 8px;text-align:right;background:#fff;font-weight:700}
+td small{color:var(--mut);display:block}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="brand"><div class="lg">🐔</div><div><b>Toño mi Pollo</b><small>Demo de plataforma</small></div></div>
+  <nav class="seg" id="nav" aria-label="Vistas">
+    <button data-act="view" data-v="tienda">Tienda</button>
+    <button data-act="view" data-v="mayoreo">Mayoreo</button>
+    <button data-act="view" data-v="panel">Panel</button>
+  </nav>
+</header>
+<main id="app"></main>
+<div id="cartbar"></div>
+<div id="toast" role="status"></div>
+<footer>Demo preparada por Aigora · Catálogo y precios reales del Excel "Arma tu pedido"; todo lo demás son datos de ejemplo.</footer>
+
+<script>
+/* ===================== Catálogo real (hoja "Catálogo" del Excel) ===================== */
+// [id, categoría, producto, descripción, presentación, precio paquete, unidad adicional, precio unidad, materia prima, kg por paquete (estimado), kg por unidad (estimado), margen de ejemplo, emoji]
+const RAW = [
+ [1,'semi','Empanadas','Empanadas de pechuga rellena','7 piezas',200,'pieza',35,'Pechuga',0.9,0.13,0.40,'🥟'],
+ [2,'semi','Alitas marinadas','Alitas marinadas','1 kg',120,'100 g',15,'Alas',1,0.1,0.36,'🍗'],
+ [3,'semi','Promo 3 kg de alitas','Alitas marinadas','3 kg',300,'100 g',15,'Alas',3,0.1,0.28,'🔥'],
+ [4,'semi','Hamburguesas','Hamburguesas estilo de la casa','12 piezas',250,'pieza',25,'Pechuga',1.4,0.12,0.38,'🍔'],
+ [5,'semi','Albóndigas','Albóndigas rellenas (queso o huevo)','15 piezas',200,'pieza',20,'Pierna y muslo',0.9,0.06,0.40,'🧆'],
+ [6,'semi','Pechugas empanizadas','Pechuga empanizada con queso parmesano','6 piezas',200,'pieza',40,'Pechuga',0.9,0.15,0.38,'🧀'],
+ [7,'semi','Nuggets','Nuggets de pechuga','1 kg',220,'pieza',6,'Pechuga',1,0.03,0.40,'🍘'],
+ [8,'semi','Muslos supremos empanizados','Suprema de pierna y muslo','12 piezas',350,'pieza',35,'Pierna y muslo',1.8,0.15,0.37,'👑'],
+ [9,'fresco','Bistec de pechuga','Bistec de pollo','10 piezas',250,'pieza',30,'Pechuga',1.2,0.12,0.27,'🥩'],
+ [10,'fresco','Fajitas de pechuga','Fajitas de pechuga','1 kg',200,'100 g',25,'Pechuga',1,0.1,0.30,'🌮'],
+ [11,'fresco','Brochetas de pechuga','Brochetas de pechuga','1 kg',200,'100 g',25,'Pechuga',1,0.1,0.30,'🍢'],
+ [12,'fresco','Molida de pechuga','Carne molida de pechuga','1 kg',200,'100 g',25,'Pechuga',1,0.1,0.30,'🥣'],
+ [13,'fresco','Pechuga para cocer','Pechuga para cocer','1 kg',140,'100 g',15,'Pechuga',1,0.1,0.22,'🍲'],
+ [14,'fresco','Fajitas de pulpa de pierna y muslo','Pulpa de pierna y muslo en fajitas','1 kg',140,'100 g',15,'Pierna y muslo',1,0.1,0.30,'🌮'],
+ [15,'fresco','Brochetas de pulpa de pierna y muslo','Pulpa de pierna y muslo para brocheta','1 kg',140,'100 g',15,'Pierna y muslo',1,0.1,0.30,'🍢'],
+ [16,'fresco','Molida de pierna y muslo','Carne molida de pierna y muslo','1 kg',140,'100 g',15,'Pierna y muslo',1,0.1,0.30,'🥣'],
+ [17,'fresco','Pulpa de pierna y muslo','Pulpa de pierna y muslo','1 kg',140,'100 g',15,'Pierna y muslo',1,0.1,0.30,'🍖'],
+ [18,'fresco','Pierna y muslo en piezas','Pierna y muslo en piezas','1 kg',90,'100 g',10,'Pierna y muslo',1,0.1,0.24,'🍗'],
+ [19,'fresco','Muslo y pierna sin piel y sin grasa','Muslo y pierna limpios','12 piezas',200,'pieza',18,'Pierna y muslo',1.8,0.15,0.28,'✨'],
+ [20,'fresco','Piernas','Piernas de pollo','20 piezas',200,'pieza',15,'Pierna y muslo',2.2,0.11,0.26,'🍗'],
+ [21,'fresco','Pollo entero','Pollo entero, aprox. 3 kg; pídelo como quieras','1 pollo completo (aprox. 3 kg)',270,null,0,'Pollo entero',3,0,0.18,'🐓']
+];
+const P = RAW.map(r=>({id:r[0],cat:r[1],name:r[2],desc:r[3],pres:r[4],price:r[5],unit:r[6],uPrice:r[7],base:r[8],kg:r[9],uKg:r[10],margin:r[11],emo:r[12]}));
+const CATS = {todos:'Todos',semi:'Semipreparados y promociones',fresco:'Frescos y por kilo'};
+
+/* ===================== Datos de ejemplo ===================== */
+const ZONES = {
+  polanco:{n:'Polanco',days:[2],c:[19.433,-99.195]},
+  napoles:{n:'Nápoles',days:[4],c:[19.393,-99.176]},
+  azca:{n:'Azcapotzalco',days:[1,5],c:[19.487,-99.186]},
+  valle:{n:'Del Valle',days:[4],c:[19.380,-99.165]}
+};
+const CHAPTERS = {
+  fortuna:{n:'BNI Fortuna',day:3,c:[19.427,-99.168]},
+  cap2:{n:'Capítulo Reforma (ejemplo)',day:4,c:[19.428,-99.160]},
+  cap3:{n:'Capítulo Sur (ejemplo)',day:2,c:[19.360,-99.170]}
+};
+const DEPOT = [19.474,-99.180];
+const STATUS = ['Nuevo','Confirmado','Preparado','En ruta','Entregado','Cobrado'];
+const TIERS = [{min:3000,pct:0.08},{min:1500,pct:0.05}];
+const DOW = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+
+/* ===================== Utilidades ===================== */
+const $ = s=>document.querySelector(s);
+const money = n=>new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0}).format(Math.round(n));
+const num = (n,d=1)=>new Intl.NumberFormat('es-MX',{maximumFractionDigits:d}).format(n);
+const esc = s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const sod = d=>{const x=new Date(d);x.setHours(0,0,0,0);return x};
+const addDays = (d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const iso = d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const fromIso = s=>{const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)};
+const fdate = s=>{const d=fromIso(s);return DOW[d.getDay()]+' '+d.getDate()+' de '+d.toLocaleDateString('es-MX',{month:'long'})};
+const fshort = s=>{const d=fromIso(s);return DOW[d.getDay()].slice(0,3)+' '+d.getDate()+' '+d.toLocaleDateString('es-MX',{month:'short'}).replace('.','')};
+// Próxima fecha de entrega: el siguiente día de ruta cuyo corte (11 pm del día anterior) aún no pasa
+function nextFor(days){const now=new Date();for(let i=1;i<=21;i++){const d=addDays(sod(now),i);if(days.includes(d.getDay())){const cut=addDays(d,-1);cut.setHours(23,0,0,0);if(now<cut)return iso(d)}}return iso(addDays(sod(now),7))}
+const hash = s=>{let h=7;for(const ch of String(s))h=(h*31+ch.charCodeAt(0))%100003;return h};
+function km(a,b){const R=6371,r=x=>x*Math.PI/180,dl=r(b[0]-a[0]),dn=r(b[1]-a[1]);const h=Math.sin(dl/2)**2+Math.cos(r(a[0]))*Math.cos(r(b[0]))*Math.sin(dn/2)**2;return 2*R*Math.asin(Math.sqrt(h))*1.35}
+function toast(t){const el=$('#toast');el.textContent=t;el.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove('on'),2600)}
+
+/* ===================== Estado ===================== */
+const S = {view:'tienda',cat:'todos',mode:'dom',cart:{},plan:'no',zone:'polanco',chapter:'fortuna',name:'',phone:'',addr:'',
+  orders:[],seq:1041,tab:'pedidos',focus:null,lastId:null,sent:null,err:'',paying:false,bniPay:'sesion',
+  standing:[{name:'Pechuga congelada',kg:400,price:80,base:'Pechuga congelada'},{name:'Pierna y muslo congelados',kg:60,price:74,base:'Pierna y muslo congelados'}],
+  customers:[
+    {n:'Familia Girasol',canal:'Menudeo',zona:'Polanco',freq:'Semanal',last:6,ticket:640},
+    {n:'Familia Limón',canal:'Menudeo',zona:'Polanco',freq:'Semanal',last:6,ticket:820},
+    {n:'Familia Sakura',canal:'Menudeo',zona:'Polanco',freq:'Semanal',last:6,ticket:510},
+    {n:'Familia Jacaranda',canal:'Menudeo',zona:'Nápoles',freq:'Quincenal',last:11,ticket:560},
+    {n:'Edificio Ejemplo',canal:'Menudeo',zona:'Nápoles',freq:'Semanal',last:4,ticket:470},
+    {n:'Familia Nogal',canal:'Menudeo',zona:'Azcapotzalco',freq:'Semanal',last:3,ticket:390},
+    {n:'Familia Canela',canal:'Menudeo',zona:'Azcapotzalco',freq:'Semanal',last:3,ticket:450},
+    {n:'Dark kitchen (ejemplo)',canal:'Mayoreo',zona:'Nápoles',freq:'Semanal',last:5,ticket:7400},
+    {n:'Comedor (ejemplo)',canal:'Mayoreo',zona:'Otra',freq:'Semanal',last:2,ticket:36440},
+    {n:'Socio 1 (ejemplo)',canal:'BNI',zona:'Del Valle',freq:'Quincenal',last:13,ticket:470},
+    {n:'Socio 2 (ejemplo)',canal:'BNI',zona:'Del Valle',freq:'Quincenal',last:13,ticket:620},
+    {n:'Socio 3 (ejemplo)',canal:'BNI',zona:'Condesa',freq:'Mensual',last:27,ticket:540},
+    {n:'Familia Mango',canal:'Menudeo',zona:'Del Valle',freq:'Quincenal',last:24,ticket:500},
+    {n:'Familia Cielo',canal:'Menudeo',zona:'Condesa',freq:'Mensual',last:31,ticket:420},
+    {n:'Familia Río',canal:'Menudeo',zona:'Del Valle',freq:'Quincenal',last:9,ticket:580}
+  ]
+};
+const prod = id=>P.find(p=>p.id===id);
+function lineOf(p,c){const parts=[];if(c.p)parts.push(c.p+' × '+p.pres);if(c.u)parts.push(c.u+' × '+p.unit);return {pid:p.id,name:p.name,p:c.p,u:c.u,label:parts.join(' + '),total:c.p*p.price+c.u*p.uPrice,base:p.base,kg:c.p*p.kg+c.u*p.uKg}}
+function mkOrder(o){const id=++S.seq;const lines=o.items.map(it=>it.pid?lineOf(prod(it.pid),{p:it.p||0,u:it.u||0}):it);const sub=lines.reduce((a,l)=>a+l.total,0);const disc=o.disc||0,fee=o.fee||0;const ord={id,name:o.name,phone:o.phone||'',channel:o.channel,zone:o.zone||null,chapter:o.chapter||null,addr:o.addr||'',date:o.date,lines,sub,disc,fee,total:sub-disc+fee,status:o.status||0,plan:o.plan||'no',pay:o.pay||(o.channel==='Tienda'?'tarjeta':o.channel==='Mayoreo'?'credito':'entrega'),isNew:!!o.isNew};S.orders.push(ord);return ord}
+function seed(){
+  Object.values(CHAPTERS).forEach(c=>c.date=nextFor([c.day])); // fecha de la próxima sesión presencial; Toño la cambia en Panel > BNI
+  const dP=nextFor(ZONES.polanco.days),dN=nextFor(ZONES.napoles.days),dA=nextFor(ZONES.azca.days),dF=CHAPTERS.fortuna.date,dM=nextFor([1]);
+  mkOrder({name:'Familia Girasol',channel:'Tienda',zone:'polanco',addr:'Calle Ejemplo 10',date:dP,status:1,items:[{pid:10,p:1},{pid:7,p:1},{pid:13,p:2}]});
+  mkOrder({name:'Familia Limón',channel:'WhatsApp',zone:'polanco',addr:'Calle Ejemplo 20',date:dP,status:1,items:[{pid:21,p:2},{pid:9,p:1},{pid:1,p:1}]});
+  mkOrder({name:'Familia Sakura',channel:'Tienda',zone:'polanco',addr:'Calle Ejemplo 30',date:dP,status:0,items:[{pid:17,p:2},{pid:20,p:1},{pid:19,p:1}],plan:'semanal'});
+  mkOrder({name:'Oficina Ejemplo',channel:'Tienda',zone:'polanco',addr:'Calle Ejemplo 40',date:dP,status:0,items:[{pid:4,p:2},{pid:3,p:1}]});
+  mkOrder({name:'Familia Jacaranda',channel:'Tienda',zone:'napoles',addr:'Calle Ejemplo 50',date:dN,status:0,items:[{pid:12,p:1},{pid:6,p:1}]});
+  mkOrder({name:'Edificio Ejemplo',channel:'WhatsApp',zone:'napoles',addr:'Calle Ejemplo 60',date:dN,status:1,items:[{pid:11,p:1},{pid:2,p:1},{pid:5,p:1}]});
+  mkOrder({name:'Dark kitchen (ejemplo)',channel:'Mayoreo',zone:'napoles',addr:'Calle Ejemplo 70',date:dN,status:1,items:[{name:'Pechuga fresca',label:'40 kg',total:4480,base:'Pechuga',kg:40},{name:'Alas',label:'25 kg',total:1875,base:'Alas',kg:25}]});
+  mkOrder({name:'Familia Nogal',channel:'Tienda',zone:'azca',addr:'Calle Ejemplo 80',date:dA,status:0,items:[{pid:18,p:2},{pid:13,p:1}]});
+  mkOrder({name:'Familia Canela',channel:'WhatsApp',zone:'azca',addr:'Calle Ejemplo 90',date:dA,status:0,items:[{pid:21,p:1},{pid:14,p:1}]});
+  mkOrder({name:'Socio 1 (ejemplo)',channel:'BNI',chapter:'fortuna',date:dF,status:1,items:[{pid:4,p:1},{pid:7,p:1}]});
+  mkOrder({name:'Socio 2 (ejemplo)',channel:'BNI',chapter:'fortuna',date:dF,status:1,items:[{pid:1,p:1},{pid:8,p:1},{pid:2,p:1}]});
+  mkOrder({name:'Socio 3 (ejemplo)',channel:'BNI',chapter:'fortuna',date:dF,status:0,items:[{pid:6,p:1},{pid:10,p:1}]});
+  mkOrder({name:'Socio 4 (ejemplo)',channel:'BNI',chapter:'fortuna',date:dF,status:0,items:[{pid:3,p:1},{pid:5,p:1}]});
+  S.standingId=mkOrder({name:'Comedor (ejemplo)',channel:'Mayoreo',date:dM,status:1,items:standingItems()}).id;
+  S.focus=allDates()[0];
+}
+function standingItems(){return S.standing.map(s=>({name:s.name,label:s.kg+' kg',total:s.kg*s.price,base:s.base,kg:s.kg}))}
+const allDates = ()=>[...new Set(S.orders.map(o=>o.date))].sort();
+const open = o=>o.status<4;
+
+/* ===================== Tienda ===================== */
+function cartLines(){return P.filter(p=>S.cart[p.id]&&(S.cart[p.id].p||S.cart[p.id].u)).map(p=>lineOf(p,S.cart[p.id]))}
+function totals(){const lines=cartLines();const sub=lines.reduce((a,l)=>a+l.total,0);const t=TIERS.find(t=>sub>=t.min);const tier=t?t.pct:0;const plan=S.plan!=='no'?0.05:0;const disc=Math.round(sub*(tier+plan));const net=sub-disc;const fee=(S.mode==='bni'||sub===0||net>=800)?0:49;return {lines,sub,tier,plan,disc,fee,total:net+fee,count:lines.length}}
+function deliveryDate(){return S.mode==='bni'?CHAPTERS[S.chapter].date:nextFor(ZONES[S.zone].days)}
+// Un capítulo recibe pedidos hasta las 11 pm del día anterior a su sesión presencial
+function bniOpen(k){const cut=addDays(fromIso(CHAPTERS[k].date),-1);cut.setHours(23,0,0,0);return new Date()<cut}
+function stepper(id,k,v){return `<div class="step ${v?'has':''}"><button data-act="dec" data-id="${id}" data-k="${k}" aria-label="Quitar">−</button><span>${v}</span><button data-act="inc" data-id="${id}" data-k="${k}" aria-label="Agregar">+</button></div>`}
+function renderTienda(){
+  const t=totals();const list=P.filter(p=>S.cat==='todos'||p.cat===S.cat);const dd=deliveryDate();
+  let h='';
+  if(S.sent){const o=S.sent;h+=`<div class="card" style="border:2px solid var(--ok);margin-bottom:14px"><h1>¡Pedido #${o.id} recibido!</h1><p class="sub">Gracias, ${esc(o.name)}. Te llega el <b>${fdate(o.date)}</b>${o.chapter?' en la sesión de '+esc(CHAPTERS[o.chapter].n):' en '+esc(ZONES[o.zone].n)}. Total: <b>${money(o.total)}</b>. ${o.pay==='entrega'?'Pagas al recibir.':'Pago recibido con '+(o.pay==='applepay'?'Apple Pay':'tarjeta')+' (simulado).'} Te confirmamos por WhatsApp.</p><div class="note ok">En la plataforma real, este pedido le llega a Toño y a Carla en ese mismo instante.</div><div style="margin-top:12px;display:grid;gap:8px"><button class="btn alt" data-act="gopanel">Ver cómo le llega a Toño →</button><button class="btn ghost" data-act="again">Hacer otro pedido</button></div></div>`}
+  h+=`<div class="hero"><h1>Arma tu pedido</h1><p>Elige tus paquetes, agrega piezas extra y mira tu total al momento. Pide antes de las 11 de la noche y te llega en tu siguiente día de ruta.</p></div>`;
+  h+=`<div class="chips">${Object.entries(CATS).map(([k,v])=>`<button class="chip ${S.cat===k?'on':''}" data-act="cat" data-v="${k}">${v}</button>`).join('')}</div>`;
+  h+=`<div class="grid g3">${list.map(p=>{const c=S.cart[p.id]||{p:0,u:0};return `<div class="card prod"><div class="top"><div class="tile">${p.emo}</div><div><div class="nm">${esc(p.name)}</div><div class="ds">${esc(p.desc)}</div></div><div class="pr"><b>${money(p.price)}</b><small>${esc(p.pres.replace(' (aprox. 3 kg)',''))}</small></div></div><div class="qs"><div><span>Paquetes</span>${stepper(p.id,'p',c.p)}</div>${p.unit?`<div><span>Extra: ${esc(p.unit)} ${money(p.uPrice)}</span>${stepper(p.id,'u',c.u)}</div>`:''}</div></div>`}).join('')}</div>`;
+  h+=`<h2 id="pedido">Tu pedido</h2>`;
+  if(!t.count){h+=`<div class="card"><p class="sub">Todavía no agregas productos. Elige un paquete y aquí verás tu total.</p></div>`}
+  else{
+    const next=[...TIERS].reverse().find(x=>t.sub<x.min);
+    h+=`<div class="grid"><div class="card">`;
+    h+=t.lines.map(l=>`<div class="ln"><span>${esc(l.name)}<small>${esc(l.label)}</small></span><b>${money(l.total)}</b></div>`).join('');
+    h+=`<div class="ln"><span>Subtotal</span><b>${money(t.sub)}</b></div>`;
+    if(t.tier)h+=`<div class="ln dis"><span>Descuento por volumen (${Math.round(t.tier*100)}%)</span><b>−${money(t.sub*t.tier)}</b></div>`;
+    if(t.plan)h+=`<div class="ln dis"><span>Planea y ahorra (5%)</span><b>−${money(t.sub*t.plan)}</b></div>`;
+    h+=`<div class="ln"><span>Entrega${S.mode==='bni'?' en tu sesión':''}</span><b>${t.fee?money(t.fee):'Gratis'}</b></div>`;
+    h+=`<div class="ln tot"><span>Total</span><span>${money(t.total)}</span></div>`;
+    if(next){const pct=Math.min(100,Math.round(t.sub/next.min*100));h+=`<div class="note">Te faltan <b>${money(next.min-t.sub)}</b> para ${Math.round(next.pct*100)}% de descuento. <span class="eg">escalas de ejemplo</span> ${fz(2)}<div class="prog"><i style="width:${pct}%"></i></div></div>`}
+    else h+=`<div class="note ok">Ya tienes el descuento máximo por volumen. <span class="eg">escalas de ejemplo</span> ${fz(2)}</div>`;
+    h+=`<h3 style="margin-top:14px">Planea y ahorra ${fz(2)}</h3><p class="sub" style="font-size:13px">Deja tu pedido fijo y recibe 5% adicional. Lo cambias o lo pausas cuando quieras.</p><div class="toggle">${[['no','Solo esta vez'],['semanal','Cada semana'],['quincenal','Cada 15 días']].map(([k,v])=>`<button class="${S.plan===k?'on':''}" data-act="plan" data-v="${k}">${v}</button>`).join('')}</div>`;
+    h+=`</div><div class="card"><h3>¿Cómo te lo entregamos?</h3><div class="toggle"><button class="${S.mode==='dom'?'on':''}" data-act="mode" data-v="dom">A domicilio</button><button class="${S.mode==='bni'?'on':''}" data-act="mode" data-v="bni">En mi capítulo BNI</button></div>`;
+    if(S.mode==='dom'){h+=`<div class="field"><label for="zone">Zona, día y costo de entrega ${fz(3)}</label><select id="zone" data-f="zone" data-re="1">${Object.entries(ZONES).map(([k,z])=>`<option value="${k}" ${S.zone===k?'selected':''}>${z.n} · ruta ${z.days.map(d=>DOW[d]).join(' y ')}</option>`).join('')}</select></div><div class="field"><label for="addr">Dirección</label><input id="addr" data-f="addr" value="${esc(S.addr)}" placeholder="Calle, número y colonia" autocomplete="off"></div>`}
+    else{h+=`<div class="field"><label for="chapter">Capítulo</label><select id="chapter" data-f="chapter" data-re="1">${Object.entries(CHAPTERS).map(([k,c])=>`<option value="${k}" ${S.chapter===k?'selected':''}>${c.n} · sesión presencial ${fshort(c.date)}</option>`).join('')}</select></div>`}
+    const closed=S.mode==='bni'&&!bniOpen(S.chapter);
+    if(closed)h+=`<div class="note" style="background:#FDE2DF;color:#8f1d12">El corte para la sesión del <b>${fdate(dd)}</b> ya pasó. Pide a domicilio o espera a que Toño publique la siguiente fecha.</div>`;
+    else h+=`<div class="note ok">${S.mode==='bni'?'Te lo entregamos en la sesión presencial del':'Te llega el'} <b>${fdate(dd)}</b>${S.mode==='bni'?', junto con los pedidos de tu capítulo':''}. Corte: 11 de la noche del día anterior.</div>`;
+    if(S.mode==='bni')h+=`<h3 style="margin-top:14px">¿Cómo pagas?</h3><div class="toggle"><button class="${S.bniPay==='sesion'?'on':''}" data-act="bnipay" data-v="sesion">Al recibir en la sesión</button><button class="${S.bniPay==='tarjeta'?'on':''}" data-act="bnipay" data-v="tarjeta">Con tarjeta ahora</button></div>`;
+    h+=`<div class="two"><div class="field"><label for="name">Tu nombre</label><input id="name" data-f="name" value="${esc(S.name)}" placeholder="Nombre" autocomplete="off"></div><div class="field"><label for="phone">Celular</label><input id="phone" data-f="phone" value="${esc(S.phone)}" placeholder="55 0000 0000" inputmode="tel" autocomplete="off"></div></div>`;
+    if(S.err)h+=`<div class="note" style="background:#FDE2DF;color:#8f1d12" id="err">${esc(S.err)}</div>`;
+    const prepay=S.mode==='dom'||S.bniPay==='tarjeta';
+    if(S.paying)h+=`<div class="pay" id="pay"><h3>Pago seguro</h3><p class="sub">Total a pagar: <b>${money(t.total)}</b>. Tu pedido se confirma en cuanto pagas.</p><button class="btn" data-act="pay" data-v="tarjeta">💳 Pagar con tarjeta</button><button class="btn apple" data-act="pay" data-v="applepay">Pagar con Apple Pay</button><div class="note" style="margin-top:0">Pago simulado en la demo: no se cobra nada ni se piden datos de tarjeta. En la plataforma real aquí se abre la ventana segura del procesador de pagos.</div><button class="btn ghost" data-act="payback">Regresar a mi pedido</button></div>`;
+    else h+=`<div style="margin-top:14px"><button class="btn" data-act="send" ${closed?'disabled style="opacity:.5"':''}>${prepay?'Continuar al pago':'Enviar pedido'} · ${money(t.total)}</button>${prepay?'<p class="sub" style="font-size:12px;text-align:center;margin-top:6px">Pagas con tarjeta antes de confirmar tu pedido.</p>':''}</div>`;
+    h+=`</div></div>`;
+  }
+  $('#app').innerHTML=h;
+  $('#cartbar').innerHTML=(t.count&&!S.sent)?`<div class="in"><button class="btn alt" data-act="tocart">${t.count} producto${t.count>1?'s':''} · ${money(t.total)} · Ver mi pedido</button></div>`:'';
+}
+// send() valida y, si toca pago previo, abre el paso de pago; send('tarjeta' | 'applepay') registra el pedido ya pagado
+function send(pay){
+  const t=totals();if(!t.count)return;
+  if(!S.name.trim()){S.err='Escribe tu nombre para enviar el pedido.';S.paying=false;render();const e=$('#name');if(e)e.focus();return}
+  if(S.mode==='dom'&&!S.addr.trim()){S.err='Escribe tu dirección de entrega.';S.paying=false;render();const e=$('#addr');if(e)e.focus();return}
+  if(S.mode==='bni'&&!bniOpen(S.chapter))return;
+  S.err='';
+  const prepay=S.mode==='dom'||S.bniPay==='tarjeta';
+  if(prepay&&!pay){S.paying=true;render();const e=$('#pay');if(e)e.scrollIntoView({behavior:'smooth',block:'center'});return}
+  S.orders.forEach(o=>o.isNew=false);S.paying=false;
+  const o=mkOrder({name:S.name.trim(),phone:S.phone,channel:S.mode==='bni'?'BNI':'Tienda',zone:S.mode==='dom'?S.zone:null,chapter:S.mode==='bni'?S.chapter:null,addr:S.addr,date:deliveryDate(),items:t.lines,disc:t.disc,fee:t.fee,plan:S.plan,pay:pay||'entrega',isNew:true});
+  S.customers.unshift({n:o.name,canal:o.channel==='BNI'?'BNI':'Menudeo',zona:o.zone?ZONES[o.zone].n:CHAPTERS[o.chapter].n,freq:o.plan==='no'?'Primer pedido':(o.plan==='semanal'?'Semanal':'Quincenal'),last:0,ticket:o.total,nuevo:true});
+  S.sent=o;S.lastId=o.id;S.focus=o.date;S.cart={};S.plan='no';
+  render();window.scrollTo(0,0);
+}
+
+/* ===================== Mayoreo ===================== */
+function renderMayoreo(){
+  const tot=S.standing.reduce((a,s)=>a+s.kg*s.price,0);const dM=S.orders.find(o=>o.id===S.standingId).date;
+  const hist=[1,2,3,4].map(i=>({d:iso(addDays(fromIso(dM),-7*i)),t:36440,paid:i>1}));
+  let h=`<div class="hero"><h1>Portal de mayoreo ${fz(2)}</h1><p>Acceso solo por invitación. Tus precios, tu pedido fijo y tu saldo, sin llamadas ni mensajes.</p></div><div style="margin-top:12px">${fzNote(2)}</div>`;
+  h+=`<div class="card" style="margin-top:12px"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><div><h3>Comedor <span class="eg">cliente de ejemplo</span></h3><p class="sub">Cliente VIP · crédito a 15 días · entrega los lunes</p></div><span class="badge b2">Cuenta activa</span></div></div>`;
+  h+=`<h2>Tu pedido semanal fijo</h2><div class="card">`;
+  h+=S.standing.map((s,i)=>`<div class="ln" style="align-items:center"><span>${esc(s.name)}<small>${money(s.price)} por kg</small></span><span style="display:flex;align-items:center;gap:10px"><div class="step has"><button data-act="mkg" data-id="${i}" data-v="-10" aria-label="Menos kilos">−</button><span style="min-width:64px">${s.kg} kg</span><button data-act="mkg" data-id="${i}" data-v="10" aria-label="Más kilos">+</button></div><b style="min-width:74px;text-align:right">${money(s.kg*s.price)}</b></span></div>`).join('');
+  h+=`<div class="ln tot"><span>Total semanal</span><span>${money(tot)}</span></div>`;
+  h+=`<div class="note ok">Próxima entrega: <b>${fdate(dM)}</b>. Puedes modificar o pausar hasta las 11 de la noche del día anterior.</div>`;
+  h+=`<div style="display:grid;gap:8px;margin-top:12px"><button class="btn" data-act="msave">Guardar cambios</button><button class="btn ghost" data-act="mpause">Pausar esta semana</button></div></div>`;
+  h+=`<h2>Tu lista de precios <span class="eg">precios de ejemplo</span></h2><div class="card scroll"><table><tr><th>Producto</th><th class="n">1–49 kg</th><th class="n">50–199 kg</th><th class="n">200 kg o más</th></tr>
+  <tr><td>Pechuga congelada</td><td class="n">$92</td><td class="n">$86</td><td class="n"><b>$80</b></td></tr>
+  <tr><td>Pechuga fresca</td><td class="n">$118</td><td class="n">$112</td><td class="n"><b>$105</b></td></tr>
+  <tr><td>Pierna y muslo congelados</td><td class="n">$82</td><td class="n"><b>$74</b></td><td class="n">$70</td></tr>
+  <tr><td>Alas</td><td class="n">$84</td><td class="n">$75</td><td class="n">$71</td></tr></table></div>`;
+  h+=`<h2>Historial y saldo <span class="eg">datos de ejemplo</span></h2><div class="card scroll"><table><tr><th>Entrega</th><th class="n">Importe</th><th class="n">Estado</th></tr>${hist.map(x=>`<tr><td>${fshort(x.d)}</td><td class="n">${money(x.t)}</td><td class="n">${x.paid?'<span class="badge b2">Pagado</span>':'<span class="badge b3">Por pagar</span>'}</td></tr>`).join('')}</table><div class="ln tot"><span>Saldo por pagar</span><span>${money(36440)}</span></div></div>`;
+  $('#app').innerHTML=h;$('#cartbar').innerHTML='';
+}
+
+/* ===================== Panel ===================== */
+const PAYB={tarjeta:'<span class="badge b2">Pagado con tarjeta</span>',applepay:'<span class="badge b2">Pagado con Apple Pay</span>',entrega:'<span class="badge">Cobro al entregar</span>',credito:'<span class="badge">Crédito 15 días</span>'};
+const TABS=[['pedidos','Pedidos'],['bni','BNI'],['clientes','Clientes'],['compra','Compra'],['ruta','Ruta'],['costeo','Costeo'],['numeros','Números']];
+const FASE={ruta:3,costeo:2,numeros:4};
+const fz=n=>`<i class="fz">Fase ${n}</i>`;
+const fzNote=n=>`<div class="fznote"><b>Fase ${n}.</b> Esta parte no viene en la Fase 1: se contrata por separado, cuando te convenga.</div>`;
+const CH_B={Tienda:'b1',WhatsApp:'b2',BNI:'b4',Mayoreo:'b3'};
+function renderPanel(){
+  const dates=allDates();if(!dates.includes(S.focus))S.focus=dates[0];
+  const day=S.orders.filter(o=>o.date===S.focus);const openAll=S.orders.filter(open);
+  let h=`<h1>Panel de Toño</h1><p class="sub">Todo lo que entra por la tienda, BNI, WhatsApp y mayoreo, en un solo lugar. <span class="eg">datos de ejemplo</span></p><p class="sub" style="font-size:13px">Lo que no lleva etiqueta es la Fase 1. Lo demás dice a qué fase pertenece.</p>`;
+  h+=`<div class="kpis"><div class="kpi"><small>Pedidos abiertos</small><b>${openAll.length}</b></div><div class="kpi"><small>Por entregar</small><b>${money(openAll.reduce((a,o)=>a+o.total,0))}</b></div><div class="kpi"><small>Ticket promedio menudeo</small><b>${money(avg(S.orders.filter(o=>o.channel!=='Mayoreo').map(o=>o.total)))}</b></div><div class="kpi"><small>Clientes</small><b>${S.customers.length}</b></div></div>`;
+  h+=`<div class="tabs" role="tablist">${TABS.map(([k,v])=>`<button class="${S.tab===k?'on':''}" data-act="tab" data-v="${k}">${v}${FASE[k]?' '+fz(FASE[k]):''}</button>`).join('')}</div>`;
+  if(FASE[S.tab])h+=fzNote(FASE[S.tab]);
+  if(['pedidos','compra','ruta'].includes(S.tab))h+=`<div class="chips" style="margin-top:0">${dates.map(d=>`<button class="chip ${S.focus===d?'on':''}" data-act="focus" data-v="${d}">${fshort(d)} · ${S.orders.filter(o=>o.date===d).length}</button>`).join('')}</div>`;
+  h+=({pedidos:tabPedidos,bni:tabBni,clientes:tabClientes,compra:tabCompra,ruta:tabRuta,costeo:tabCosteo,numeros:tabNumeros})[S.tab](day);
+  $('#app').innerHTML=h;$('#cartbar').innerHTML='';
+  if(S.tab==='costeo')calc();
+}
+const avg=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:0;
+function tabPedidos(day){
+  let h=`<h2>Entregas del ${fdate(S.focus)}</h2>`;
+  const bni=day.filter(o=>o.channel==='BNI');
+  if(bni.length){const ch=CHAPTERS[bni[0].chapter];h+=`<div class="note ok" style="margin-bottom:12px"><b>Pedido consolidado · ${esc(ch.n)}</b>: ${bni.length} socios, ${money(bni.reduce((a,o)=>a+o.total,0))}. Una sola entrega en la sesión.</div>`}
+  h+=`<div class="grid">${day.map(o=>`<div class="card ord ${o.isNew?'new':''}"><div class="hd"><div><b>#${o.id} · ${esc(o.name)}</b><div style="margin-top:4px"><span class="badge ${CH_B[o.channel]}">${o.channel}</span> ${o.isNew?'<span class="badge b3">Recién llegó</span>':''} ${o.plan!=='no'?'<span class="badge">Recurrente '+o.plan+'</span>':''} ${PAYB[o.pay]||''}</div></div><span class="st s${o.status}">${STATUS[o.status]}</span></div><div class="items">${o.lines.map(l=>esc(l.name)+' ('+esc(l.label)+')').join(' · ')}<br>${o.zone?esc(ZONES[o.zone].n)+(o.addr?' · '+esc(o.addr):''):(o.chapter?'Entrega en sesión de '+esc(CHAPTERS[o.chapter].n):'Entrega en sitio')}</div><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><b style="font-size:17px">${money(o.total)}</b>${o.status<5?`<button class="btn sm alt" data-act="adv" data-id="${o.id}">Pasar a ${STATUS[o.status+1].toLowerCase()} →</button>`:''}</div></div>`).join('')}</div>`;
+  h+=`<h2>Capturar un pedido de WhatsApp o del puesto</h2><div class="card"><div class="two"><div class="field"><label for="wname">Cliente</label><input id="wname" placeholder="Nombre" autocomplete="off"></div><div class="field"><label for="wzone">Zona</label><select id="wzone">${Object.entries(ZONES).map(([k,z])=>`<option value="${k}">${z.n}</option>`).join('')}</select></div></div><div class="two"><div class="field"><label for="wprod">Producto</label><select id="wprod">${P.map(p=>`<option value="${p.id}">${esc(p.name)} · ${money(p.price)}</option>`).join('')}</select></div><div class="field"><label for="wqty">Paquetes</label><input id="wqty" type="number" min="1" value="1" inputmode="numeric"></div></div><div style="margin-top:12px"><button class="btn alt" data-act="wadd">Registrar pedido</button></div></div>`;
+  return h;
+}
+function tabBni(){
+  let h=`<h2>Sesiones presenciales de BNI</h2><p class="sub">Tú pones la fecha de la próxima sesión presencial de cada capítulo. Los socios la ven al pedir y sus pedidos se juntan en una sola entrega.</p><div class="grid g3" style="margin-top:12px">`;
+  h+=Object.entries(CHAPTERS).map(([k,c])=>{const os=S.orders.filter(o=>o.chapter===k&&o.date===c.date&&open(o)),ab=bniOpen(k);return `<div class="card"><div style="display:flex;justify-content:space-between;gap:8px;align-items:flex-start"><h3>${esc(c.n)}</h3><span class="badge ${ab?'b2':'b3'}">${ab?'Recibiendo pedidos':'Corte cerrado'}</span></div><div class="field"><label for="bd-${k}">Próxima sesión presencial</label><input type="date" id="bd-${k}" data-bni="${k}" value="${c.date}" min="${iso(new Date())}"></div><p class="sub" style="font-size:13px;margin-top:8px">${fdate(c.date)} · corte a las 11 de la noche del día anterior</p><div class="ln tot" style="font-size:16px"><span>${os.length} pedido${os.length===1?'':'s'}</span><span>${money(os.reduce((a,o)=>a+o.total,0))}</span></div></div>`}).join('');
+  h+=`</div><div class="note" style="margin-top:12px">Si cambias la fecha, los pedidos abiertos de ese capítulo se mueven a la nueva sesión y los socios ven el cambio en la tienda.</div>`;
+  return h;
+}
+function tabClientes(){
+  const zc={};S.customers.forEach(c=>{zc[c.zona]=(zc[c.zona]||0)+1});
+  const pos={'Azcapotzalco':[150,46,true],'Polanco':[118,112,true],'Condesa':[160,150,false],'Nápoles':[178,186,true],'Del Valle':[214,214,false]};
+  const sinRuta=Object.keys(pos).filter(z=>!pos[z][2]&&zc[z]).sort((a,b)=>zc[b]-zc[a]);
+  let h=`<h2>Dónde están tus clientes ${fz(3)}</h2><div class="grid"><div class="card"><svg viewBox="0 0 320 250" role="img" aria-label="Esquema de clientes por zona"><rect x="1" y="1" width="318" height="248" rx="14" fill="#FFF7E6" stroke="#F0DFC0"/><path d="M40 20 C120 60 90 150 150 240 M20 120 C120 100 200 130 300 110" stroke="#F0DFC0" stroke-width="6" fill="none"/>${Object.entries(pos).map(([z,[x,y,r]])=>{const n=zc[z]||0;if(!n)return '';const rad=12+n*4;return `<circle cx="${x}" cy="${y}" r="${rad}" fill="${r?'#F4801A':'#D8321F'}" fill-opacity=".28" stroke="${r?'#F4801A':'#D8321F'}" stroke-width="2" ${r?'':'stroke-dasharray="4 3"'}/><text x="${x}" y="${y+4}" text-anchor="middle" font-size="13" font-weight="800" fill="#2A1A0F">${n}</text><text x="${x+rad+5}" y="${y+4}" font-size="11" font-weight="700" fill="#2A1A0F">${z}</text>`}).join('')}</svg><p class="sub" style="font-size:12px">Esquema de ejemplo. Círculo punteado = zona sin ruta todavía. En la plataforma real es un mapa con cada dirección.</p></div><div class="card"><h3>Lo que te dice el mapa</h3>${sinRuta.length?`<div class="note"><b>${sinRuta[0]}</b> ya tiene ${zc[sinRuta[0]]} clientes y no tiene ruta. Es la siguiente zona que conviene abrir.</div>`:''}<div class="note" style="background:#FDE2DF;color:#8f1d12">${fz(4)} ${S.customers.filter(c=>c.last>=21).length} clientes llevan más de 3 semanas sin pedir. Un mensaje a tiempo los regresa.</div><div class="note ok">${S.customers.filter(c=>c.freq==='Semanal').length} clientes piden cada semana: son tu base para planear la compra.</div></div></div>`;
+  h+=`<h2>Base de clientes</h2><div class="card scroll"><table><tr><th>Cliente</th><th>Canal</th><th>Zona</th><th>Frecuencia</th><th class="n">Último pedido</th><th class="n">Ticket</th></tr>${S.customers.map(c=>`<tr><td><b>${esc(c.n)}</b> ${c.nuevo?'<span class="badge b3">Nuevo</span>':''}</td><td><span class="badge ${c.canal==='BNI'?'b4':c.canal==='Mayoreo'?'b3':'b1'}">${c.canal}</span></td><td>${esc(c.zona)}</td><td>${c.freq}</td><td class="n">${c.last===0?'hoy':'hace '+c.last+' días'}${c.last>=21?' ⚠️':''}</td><td class="n">${money(c.ticket)}</td></tr>`).join('')}</table></div>`;
+  return h;
+}
+function tabCompra(day){
+  const list=day.filter(open);const byP={},byB={};
+  list.forEach(o=>o.lines.forEach(l=>{const k=l.name;byP[k]=byP[k]||{name:l.name,p:0,u:0,kg:0,labels:[]};if(l.pid){byP[k].p+=l.p;byP[k].u+=l.u}else byP[k].labels.push(l.label);byP[k].kg+=l.kg;byB[l.base]=(byB[l.base]||0)+l.kg}));
+  const rows=Object.values(byP).sort((a,b)=>b.kg-a.kg);const tk=rows.reduce((a,r)=>a+r.kg,0);
+  let h=`<h2>Lista de compra para el ${fdate(S.focus)}</h2><p class="sub">Se arma sola a la hora de corte (11 de la noche del día anterior) con los ${list.length} pedidos abiertos de esa fecha.</p>`;
+  if(!rows.length)return h+`<div class="card" style="margin-top:12px"><p class="sub">No hay pedidos abiertos para esta fecha.</p></div>`;
+  h+=`<div class="grid" style="margin-top:12px"><div class="card"><h3>Qué comprar <span class="eg">kilos estimados</span></h3>${Object.entries(byB).sort((a,b)=>b[1]-a[1]).map(([b,k])=>`<div class="hbar"><span><b>${esc(b)}</b></span><div class="t"><i style="width:${Math.max(4,Math.round(k/Math.max(...Object.values(byB))*100))}%"></i></div><b style="text-align:right">${num(k)} kg</b></div>`).join('')}<div class="ln tot"><span>Total</span><span>${num(tk)} kg</span></div><div class="note">Con esta lista le hablas a tu proveedor la noche anterior y negocias por volumen.</div></div>`;
+  h+=`<div class="card scroll"><h3>Qué preparar</h3><table><tr><th>Producto</th><th class="n">Cantidad</th><th class="n">Kilos</th></tr>${rows.map(r=>{const q=[];if(r.p)q.push(r.p+' paq.');if(r.u)q.push(r.u+' extra');r.labels.forEach(x=>q.push(x));return `<tr><td>${esc(r.name)}</td><td class="n">${q.join(' + ')}</td><td class="n">${num(r.kg)}</td></tr>`}).join('')}</table></div></div>`;
+  return h;
+}
+function tabRuta(day){
+  const list=day.filter(open);let stops=[];
+  list.filter(o=>o.zone).forEach(o=>{const c=ZONES[o.zone].c,hh=hash(o.id+o.name);stops.push({name:o.name,sub:(o.addr||ZONES[o.zone].n)+' · '+money(o.total),c:[c[0]+((hh%200)-100)/8000,c[1]+(((hh>>3)%200)-100)/8000]})});
+  const bni=list.filter(o=>o.chapter);if(bni.length){const ch=CHAPTERS[bni[0].chapter];stops.push({name:'Sesión '+ch.n,sub:bni.length+' pedidos · '+money(bni.reduce((a,o)=>a+o.total,0)),c:ch.c})}
+  let h=`<h2>Ruta del ${fdate(S.focus)}</h2>`;
+  if(!stops.length)return h+`<div class="card"><p class="sub">Los pedidos de esta fecha se entregan en sitio; no hay ruta a domicilio.</p></div>`;
+  const dist=seq=>{let d=0,prev=DEPOT;seq.forEach(s=>{d+=km(prev,s.c);prev=s.c});return d+km(prev,DEPOT)};
+  const rest=[...stops],opt=[];let cur=DEPOT;while(rest.length){let bi=0,bd=1e9;rest.forEach((s,i)=>{const d=km(cur,s.c);if(d<bd){bd=d;bi=i}});const s=rest.splice(bi,1)[0];opt.push(s);cur=s.c}
+  const dO=dist(opt);
+  let t=8*60,prev=DEPOT;opt.forEach(s=>{t+=km(prev,s.c)/22*60;s.eta=t;t+=7;prev=s.c});
+  const hm=m=>{m=Math.round(m);return Math.floor(m/60)+':'+String(m%60).padStart(2,'0')};
+  const back=t+km(prev,DEPOT)/22*60,dur=Math.round(back-480),durTxt=(dur>=60?Math.floor(dur/60)+' h ':'')+(dur%60)+' min';
+  const pts=[DEPOT,...opt.map(s=>s.c)],la=pts.map(p=>p[0]),lo=pts.map(p=>p[1]);const mnA=Math.min(...la),mxA=Math.max(...la),mnO=Math.min(...lo),mxO=Math.max(...lo);
+  const X=p=>30+(mxO===mnO?130:(p[1]-mnO)/(mxO-mnO)*260),Y=p=>205-(mxA===mnA?90:(p[0]-mnA)/(mxA-mnA)*180);
+  h+=`<div class="kpis" style="margin:0 0 12px"><div class="kpi"><small>Paradas</small><b>${opt.length}</b></div><div class="kpi"><small>Recorrido</small><b>${num(dO)} km</b></div><div class="kpi"><small>Tiempo en ruta</small><b>${durTxt}</b></div><div class="kpi"><small>Regreso estimado</small><b>${hm(back)}</b></div></div>`;
+  h+=`<div class="grid"><div class="card"><svg viewBox="0 0 320 230" role="img" aria-label="Esquema de la ruta"><rect x="1" y="1" width="318" height="228" rx="14" fill="#FFF7E6" stroke="#F0DFC0"/><polyline points="${[...pts,DEPOT].map(p=>X(p)+','+Y(p)).join(' ')}" fill="none" stroke="#D8321F" stroke-width="2.5" stroke-linejoin="round" stroke-dasharray="6 4"/><rect x="${X(DEPOT)-9}" y="${Y(DEPOT)-9}" width="18" height="18" rx="4" fill="#1F2A44"/><text x="${X(DEPOT)}" y="${Y(DEPOT)+4}" text-anchor="middle" font-size="10" font-weight="800" fill="#fff">S</text>${opt.map((s,i)=>`<circle cx="${X(s.c)}" cy="${Y(s.c)}" r="11" fill="#D8321F"/><text x="${X(s.c)}" y="${Y(s.c)+4}" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">${i+1}</text>`).join('')}</svg><p class="sub" style="font-size:12px">Esquema de ejemplo con ubicaciones aproximadas. S = punto de salida. En la plataforma real la ruta sale sobre el mapa y se abre en Google Maps o Waze.</p></div><div class="card"><h3>Orden de entrega</h3><div class="stop"><div class="nb" style="background:var(--navy)">S</div><div><b>Salida</b><small>Producto en hielera, cadena de frío</small></div><div class="eta">8:00</div></div>${opt.map((s,i)=>`<div class="stop"><div class="nb">${i+1}</div><div><b>${esc(s.name)}</b><small>${esc(s.sub)}</small></div><div class="eta">${hm(s.eta)}</div></div>`).join('')}</div></div>`;
+  return h;
+}
+const money2=n=>new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',minimumFractionDigits:2}).format(n);
+P.forEach(p=>p.cost=Math.round(p.price*(1-p.margin))); // costo de ejemplo; en la plataforma real lo captura Toño
+const gain=p=>p.price-p.cost,gainKg=p=>gain(p)/p.kg;
+const red=v=>v<0?'color:var(--r)':'color:var(--ok)';
+const COSTO_MUESTRA=[1,7,8,10,2,3,18,21];
+function costCells(p){const g=gain(p);return [`<b style="${red(g)}">${money(g)}</b><small>${Math.round(g/p.price*100)}%</small>`,`<b style="${red(g)}">${money(gainKg(p))}</b>`]}
+function costTip(){const a=prod(2),b=prod(3),A=gainKg(a),B=gainKg(b);return `<b>Para decidir:</b> el kilo de alitas te deja ${money(A)}; en la promo de 3 kg, cada kilo te deja ${money(B)}. ${B<A?'En la promo ganas menos por kilo: úsala para mover alitas que te sobran.':'Con estos costos la promo no te quita ganancia: conviene empujarla.'}`}
+function tabCosteo(){
+  const list=[...P].sort((a,b)=>gainKg(b)-gainKg(a)).filter(p=>S.allCost||COSTO_MUESTRA.includes(p.id));
+  const dem={};S.orders.filter(open).forEach(o=>o.lines.forEach(l=>{dem[l.base]=(dem[l.base]||0)+l.kg}));
+  const pe=dem['Pechuga']||0,pm=dem['Pierna y muslo']||0,birds=pe/0.32,yieldPm=birds*0.30,extra=yieldPm-pm;
+  let h=`<h2 style="margin-top:8px">Costeo: cuánto ganas de verdad</h2><p class="sub">Tú pones lo que te cuesta y la plataforma contesta tres preguntas. <span class="eg">costos de ejemplo</span></p>`;
+  h+=`<div class="q"><i>1</i><div><h2>¿Cuánto me queda de cada producto?</h2><p class="sub">Cambia lo que te cuesta y mira cómo se mueve tu ganancia. Sirve para saber qué empujar y a qué le falta precio.</p></div></div>`;
+  h+=`<div class="card scroll" style="margin-top:10px"><table><tr><th>Producto</th><th class="n">Lo vendes</th><th class="n">Te cuesta</th><th class="n">Te queda</th><th class="n">Por kilo</th></tr>${list.map(p=>{const c=costCells(p);return `<tr><td>${esc(p.name)}<small>${esc(p.pres)}</small></td><td class="n">${money(p.price)}</td><td class="n"><input class="cin" type="number" min="0" inputmode="decimal" value="${p.cost}" data-cost="${p.id}" aria-label="Costo de ${esc(p.name)}"></td><td class="n" id="cg${p.id}">${c[0]}</td><td class="n" id="ck${p.id}">${c[1]}</td></tr>`}).join('')}</table><div style="margin-top:10px"><button class="btn sm ghost" data-act="allcost">${S.allCost?'Ver menos':'Ver los '+P.length+' productos'}</button></div></div><div class="note" id="costtip">${costTip()}</div>`;
+  h+=`<div class="q"><i>2</i><div><h2>¿A cuánto le doy a un cliente grande?</h2><p class="sub">Antes de dar un precio de mayoreo, mira cuánto te queda ya pagada la entrega.</p></div></div>`;
+  const fl=(id,t,v)=>`<div class="field"><label for="${id}">${t}</label><input id="${id}" type="number" min="0" value="${v}" inputmode="decimal" data-calc="1"></div>`;
+  h+=`<div class="card" style="margin-top:10px"><div class="two">${fl('c1','Te cuesta el kilo',72)}${fl('c2','Kilos por semana',300)}</div><div class="two">${fl('c4','Te cuesta cada entrega',350)}${fl('c5','Entregas por semana',1)}</div><div class="two">${fl('c3','Quieres ganar (%)',10)}${fl('c6','Precio que te piden',80)}</div><div class="res" id="calcres"></div></div>`;
+  h+=`<div class="q"><i>3</i><div><h2>¿Qué me va a sobrar?</h2><p class="sub">Si compras pollo entero para sacar pechuga, también te llega pierna y muslo. Aquí ves si ya la tienes vendida. <span class="eg">rendimientos de ejemplo</span></p></div></div>`;
+  h+=`<div class="card" style="margin-top:10px"><div class="ln"><span>Te pidieron de pechuga fresca</span><b>${num(pe)} kg</b></div><div class="ln"><span>Pollo entero que necesitas<small>32% del pollo es pechuga</small></span><b>${num(birds)} kg</b></div><div class="ln"><span>De ahí sale pierna y muslo<small>30% del pollo</small></span><b>${num(yieldPm)} kg</b></div><div class="ln"><span>Te pidieron de pierna y muslo</span><b>${num(pm)} kg</b></div><div class="ln tot"><span>${extra>=0?'Te sobran':'Te faltan'}</span><span>${num(Math.abs(extra))} kg</span></div>${extra>1?`<div class="note"><b>Qué hacer:</b> esta semana empuja "Pierna y muslo en piezas" y "Muslos supremos empanizados", o avísale a los clientes que más los compran.</div>`:`<div class="note ok"><b>Todo vendido:</b> no te sobra pierna y muslo.${extra<-1?' Lo que falta, cómpralo ya en piezas.':''}</div>`}</div>`;
+  return h;
+}
+function calc(){
+  const v=id=>parseFloat(($('#'+id)||{}).value)||0;const c=v('c1'),k=v('c2'),m=Math.max(0,Math.min(90,v('c3')))/100,e=v('c4'),n=v('c5'),ask=v('c6');const el=$('#calcres');if(!el)return;
+  if(k<=0){el.innerHTML='<small>Escribe los kilos por semana.</small>';return}
+  const full=c+e*n/k,price=full/(1-m),u=(ask-full)*k;
+  el.innerHTML=`<small>Para ganar ${num(m*100)}%, véndelo a</small><b>${money2(price)} el kilo</b><small style="margin-top:4px">Cada kilo te cuesta ${money2(full)} ya con la entrega. Te quedan ${money((price-full)*k)} a la semana.</small>${ask>0?`<small style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,.3)">Si se lo das a ${money2(ask)}, como te lo piden</small><b style="${u<0?'color:#FF9C8F':''}">${u<0?'pierdes':'te quedan'} ${money(Math.abs(u))} a la semana</b><small style="margin-top:4px">${u<0?'Ese precio está abajo de tu costo.':'Ganas '+num((ask-full)/ask*100)+'% de lo que cobras.'}</small>`:''}`;
+}
+function tabNumeros(){
+  const ch=[{c:'Menudeo',v:412000,m:0.29},{c:'Capítulos BNI',v:58000,m:0.35},{c:'Mayoreo',v:196000,m:0.11}];
+  const tv=ch.reduce((a,x)=>a+x.v,0),tu=ch.reduce((a,x)=>a+x.v*x.m,0),ent=14000,mx=Math.max(...ch.map(x=>x.v));const my=ch[2];
+  let h=`<h2>Tu mes en números <span class="eg">mes de ejemplo</span></h2><div class="grid"><div class="card"><h3>Venta y utilidad por canal</h3>${ch.map(x=>`<div style="margin-top:12px"><b>${x.c}</b> <span class="sub" style="font-size:12px">margen ${Math.round(x.m*100)}%</span><div class="hbar"><span>Venta</span><div class="t"><i style="width:${Math.round(x.v/mx*100)}%"></i></div><b style="text-align:right">${money(x.v)}</b></div><div class="hbar"><span>Utilidad</span><div class="t"><i class="g" style="width:${Math.round(x.v*x.m/mx*100)}%"></i></div><b style="text-align:right">${money(x.v*x.m)}</b></div></div>`).join('')}</div><div class="card"><h3>Estado de resultados</h3><div class="ln"><span>Ventas</span><b>${money(tv)}</b></div><div class="ln"><span>Costo del producto</span><b>−${money(tv-tu)}</b></div><div class="ln"><span>Utilidad bruta</span><b>${money(tu)}</b></div><div class="ln"><span>Entregas (gasolina y repartidor)</span><b>−${money(ent)}</b></div><div class="ln tot"><span>Utilidad después de entregas</span><span>${money(tu-ent)}</span></div><div class="note">El mayoreo trae <b>${Math.round(my.v/tv*100)}%</b> de la venta y solo <b>${Math.round(my.v*my.m/tu*100)}%</b> de la utilidad. Con tus números reales sabrás dónde meter el esfuerzo.</div></div></div>`;
+  return h;
+}
+
+/* ===================== Render y eventos ===================== */
+function render(){
+  document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===S.view));
+  ({tienda:renderTienda,mayoreo:renderMayoreo,panel:renderPanel})[S.view]();
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-act]');if(!b)return;const {act,id,k,v}=b.dataset;
+  if(act==='view'){S.view=v;render();window.scrollTo(0,0);return}
+  if(act==='cat'){S.cat=v}
+  else if(act==='inc'||act==='dec'){const c=S.cart[id]=S.cart[id]||{p:0,u:0};c[k]=Math.max(0,Math.min(100,c[k]+(act==='inc'?1:-1)));S.sent=null;S.err='';S.paying=false}
+  else if(act==='plan'){S.plan=v;S.paying=false}
+  else if(act==='mode'){S.mode=v;S.paying=false}
+  else if(act==='bnipay'){S.bniPay=v;S.paying=false}
+  else if(act==='pay'){send(v);return}
+  else if(act==='payback'){S.paying=false}
+  else if(act==='tocart'){const el=$('#pedido');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});return}
+  else if(act==='send'){send();return}
+  else if(act==='again'){S.sent=null}
+  else if(act==='gopanel'){S.view='panel';S.tab='pedidos';S.sent=null;render();window.scrollTo(0,0);return}
+  else if(act==='tab'){S.tab=v;if(v==='ruta')bestRouteDate()}
+  else if(act==='allcost'){S.allCost=!S.allCost}
+  else if(act==='focus'){S.focus=v}
+  else if(act==='adv'){const o=S.orders.find(o=>o.id===+id);if(o&&o.status<5){o.status++;o.isNew=false;toast('Pedido #'+o.id+': '+STATUS[o.status].toLowerCase())}}
+  else if(act==='wadd'){const nm=$('#wname').value.trim(),q=Math.max(1,parseInt($('#wqty').value)||1),z=$('#wzone').value,pid=+$('#wprod').value;if(!nm){toast('Escribe el nombre del cliente');$('#wname').focus();return}S.orders.forEach(o=>o.isNew=false);const o=mkOrder({name:nm,channel:'WhatsApp',zone:z,date:nextFor(ZONES[z].days),items:[{pid,p:q}],isNew:true});S.focus=o.date;toast('Pedido #'+o.id+' registrado para el '+fshort(o.date))}
+  else if(act==='mkg'){const s=S.standing[+id];s.kg=Math.max(0,s.kg+(+v))}
+  else if(act==='msave'||act==='mpause'){const o=S.orders.find(o=>o.id===S.standingId);if(act==='mpause'){o.lines=[];o.sub=0;o.total=0;o.status=5;toast('Semana pausada. Toño ya lo ve en su panel.')}else{o.lines=standingItems();o.sub=o.total=o.lines.reduce((a,l)=>a+l.total,0);o.status=1;toast('Cambios guardados. Toño ya los ve en su panel.')}}
+  render();
+});
+document.addEventListener('input',e=>{const t=e.target;if(t.dataset.calc){calc();return}if(t.dataset.cost){const p=prod(+t.dataset.cost);p.cost=Math.max(0,parseFloat(t.value)||0);const c=costCells(p);$('#cg'+p.id).innerHTML=c[0];$('#ck'+p.id).innerHTML=c[1];$('#costtip').innerHTML=costTip();return}if(t.dataset.f&&!t.dataset.re){S[t.dataset.f]=t.value}});
+document.addEventListener('change',e=>{const t=e.target;
+  if(t.dataset.f&&t.dataset.re){S[t.dataset.f]=t.value;S.paying=false;render();return}
+  // Toño cambia la fecha de la sesión presencial: los pedidos abiertos del capítulo se mueven con ella
+  if(t.dataset.bni&&t.value){const c=CHAPTERS[t.dataset.bni],old=c.date;c.date=t.value;S.orders.forEach(o=>{if(o.chapter===t.dataset.bni&&o.date===old&&open(o))o.date=c.date});if(S.focus===old)S.focus=c.date;toast('Nueva fecha para '+c.n+': '+fshort(c.date));render()}
+});
+// Enlaces directos: index.html#panel, #mayoreo, #panel-ruta, #panel-costeo...
+(function(){const h=location.hash.replace('#','').split('-');if(['tienda','mayoreo','panel'].includes(h[0]))S.view=h[0];if(h[1]&&TABS.some(t=>t[0]===h[1]))S.tab=h[1]})();
+// Al abrir Ruta, si la fecha elegida tiene menos de 2 paradas a domicilio, salta a la fecha con más paradas
+function bestRouteDate(){const n=d=>S.orders.filter(o=>o.date===d&&open(o)&&o.zone).length;if(n(S.focus)>=2)return;const best=allDates().sort((a,b)=>n(b)-n(a))[0];if(n(best)>=2)S.focus=best}
+seed();if(S.tab==='ruta')bestRouteDate();render();
+</script>
+</body>
+</html>
